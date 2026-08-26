@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Autor;
+use App\Models\Author;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Autor>
+ * @extends Factory<Author>
  */
-class AutorFactory extends Factory
+class AuthorFactory extends Factory
 {
     /**
      * Define the model's default state.
