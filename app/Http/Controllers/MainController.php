@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
-    public function index(){
-        return view('home');
+    public function index()
+    {
+        $latestBooks = Auth::user()->books()->latest()->take(4)->get();
+
+        return view('home', [
+
+            'latestBooks' => $latestBooks
+        ]);
     }
 }
+        
