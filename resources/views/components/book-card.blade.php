@@ -8,10 +8,10 @@
             </a>
             
             <div class="d-flex gap-1">
-                <a href="{{ route('editarLivro', $book->id) }}" class="btn btn-sm btn-outline-warning px-2 py-0" title="Editar">
+                <a href="{{ route('editarLivro', ['id' => \App\Services\Operations::encryptId($book->id)]) }}" class="btn btn-sm btn-outline-warning px-2 py-0" title="Editar">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <form action="{{ route('deletarLivro', $book->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja apagar este livro?')">
+                <form action="{{ route('deletarLivro', ['id' => \App\Services\Operations::encryptId($book->id)]) }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja apagar este livro?')">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-outline-danger px-2 py-0" title="Apagar">

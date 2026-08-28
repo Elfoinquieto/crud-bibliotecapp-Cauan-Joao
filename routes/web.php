@@ -27,7 +27,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/livros/cadastrar', [BookController::class, 'formBook'])->name('cadastroLivro');
     Route::post('/livros/salvar', [BookController::class, 'saveBook'])->name('salvarLivro');
     Route::get('/livros/editar/{id}', [BookController::class, 'editBook'])->name('editarLivro');
-    Route::put('/livros/atualizar/{id}', [BookController::class, 'updateBook'])->name('atualizarLivro');
+    Route::put('/livros/atualizar/', [BookController::class, 'updateBook'])->name('atualizarLivro');
     Route::get('/livros/{id}', [BookController::class, 'showBook'])->name('detalhesLivro');
     Route::delete('/livros/deletar/{id}', [BookController::class, 'deletarLivro'])->name('deletarLivro');
+    Route::get('/listDeletedBooks', [BookController::class, 'listDeletedBooks'])->name('listDeletedBooks');
+    Route::get('/hardDelete-book/{id}', [BookController::class, 'hardDeleteBook'])->name('hardDelete');
+    Route::get('/restore-book/{id}', [BookController::class, 'restoreBook'])->name('restore');
 });
