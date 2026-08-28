@@ -18,6 +18,18 @@ class Author extends Model
         'literary_genre',
     ];
 
+      public const GENRES = [
+        'Ficção Científica',
+        'Fantasia',
+        'Romance',
+        'Mistério / Suspense',
+        'Terror',
+        'Biografia',
+        'História',
+        'Autoajuda',
+        'Técnico / Educacional',
+    ];
+
     public function books(){
         return $this->hasMany(Book::class, 'author_id');
     }

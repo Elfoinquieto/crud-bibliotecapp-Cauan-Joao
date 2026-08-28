@@ -6,11 +6,11 @@
             <a href="{{ route('detalhesAutor', $author->id) }}" class="text-warning text-decoration-none fw-bold h5 mb-0 text-truncate me-2" title="{{ $author->name }}">
                 {{ $author->name }}
             </a>
-            <div class="d-flex gap-1">
-                <a href="{{ route('editarAutor', $author->id) }}" class="btn btn-sm btn-outline-warning px-2 py-0" title="Editar">
+             <div class="d-flex gap-1">
+                <a href="{{ route('editarAutor', ['id' => \App\Services\Operations::encryptId($author->id)]) }}" class="btn btn-sm btn-outline-warning px-2 py-0" title="Editar">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <form action="{{ route('deletarAutor', $author->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja apagar este autor?')">
+                <form action="{{ route('deletarAutor', ['id' => \App\Services\Operations::encryptId($author->id)]) }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja apagar este autor?')">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-outline-danger px-2 py-0" title="Apagar">

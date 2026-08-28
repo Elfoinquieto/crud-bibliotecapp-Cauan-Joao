@@ -19,9 +19,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/autores/cadastrar', [AuthorController::class, 'formAuthor'])->name('cadastroAutor');
     Route::post('/autores/salvar', [AuthorController::class, 'saveAuthor'])->name('salvarAutor');
     Route::get('/autores/editar/{id}', [AuthorController::class, 'editAuthor'])->name('editarAutor');
-    Route::put('/autores/atualizar/{id}', [AuthorController::class, 'updateAuthor'])->name('atualizarAutor');
+    Route::put('/autores/atualizar/', [AuthorController::class, 'updateAuthor'])->name('atualizarAutor');
     Route::get('/autores/{id}', [AuthorController::class, 'showAuthor'])->name('detalhesAutor');
     Route::delete('/autores/deletar/{id}', [AuthorController::class, 'deletarAutor'])->name('deletarAutor');
+
 
     Route::get('/livros', [BookController::class, 'listBooks'])->name('listarLivros');
     Route::get('/livros/cadastrar', [BookController::class, 'formBook'])->name('cadastroLivro');
