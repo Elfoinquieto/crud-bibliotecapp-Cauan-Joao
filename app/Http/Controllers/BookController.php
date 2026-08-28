@@ -26,14 +26,15 @@ class BookController extends Controller
     {
         $request->validate([
             'title' => 'required|min:2|max:200',
-            'author_id' => 'nullable|exists:authors,id',
-            'isbn' => 'required|string|max:20',
+            'author_id' => 'required|exists:authors,id',
+            'isbn' => 'required|string|max:13',
             'genre' => ['required', Rule::in(Book::GENRES)],
             'description' => 'required|max:2000',
         ], [
             'title.required' => 'O título do livro é obrigatório.',
             'title.min' => 'O título deve ter pelo menos :min caracteres.',
             'title.max' => 'O título não pode passar de :max caracteres.',
+            'author_id.required' => 'O autor do livro é obrigatório.',
             'author_id.exists' => 'O autor selecionado é inválido.',
             'isbn.required' => 'O código ISBN do livro é obrigatório.',
             'genre.required' => 'O gênero do livro é obrigatório.',
@@ -69,14 +70,15 @@ class BookController extends Controller
         $request->validate([
             'book_id' => 'required',
             'title' => 'required|min:2|max:200',
-            'author_id' => 'nullable|exists:authors,id',
-            'isbn' => 'required|string|max:20',
+            'author_id' => 'required|exists:authors,id',
+            'isbn' => 'required|string|max:13',
             'genre' => ['required', Rule::in(Book::GENRES)],
             'description' => 'required|max:2000',
         ], [
             'title.required' => 'O título do livro é obrigatório.',
             'title.min' => 'O título deve ter pelo menos :min caracteres.',
             'title.max' => 'O título não pode passar de :max caracteres.',
+            'author_id.required' => 'O autor do livro é obrigatório.',
             'author_id.exists' => 'O autor selecionado é inválido.',
             'isbn.required' => 'O código ISBN do livro é obrigatório.',
             'genre.required' => 'O gênero do livro é obrigatório.',
