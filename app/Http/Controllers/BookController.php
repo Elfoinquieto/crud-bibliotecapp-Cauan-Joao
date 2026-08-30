@@ -10,6 +10,16 @@ use Illuminate\Validation\Rule;
 
 class BookController extends Controller
 {
+    public function index()
+    {
+        $latestBooks = Auth::user()->books()->latest()->take(4)->get();
+
+        return view('home', [
+
+            'latestBooks' => $latestBooks
+        ]);
+    }
+
     public function listBooks()
     {
         $books = Auth::user()->books;
@@ -59,7 +69,7 @@ class BookController extends Controller
     public function editBook($id)
     {
         $decrypted_id = Operations::decryptId($id);
-        $book = Auth::user()->books()->findOrFail($decrypted_id);    
+        $book = Auth::user()->books()->findOrFail($decrypted_id);
         $authors = Auth::user()->authors;
 
         return view('books.form', ['book' => $book, 'authors' => $authors]);
@@ -106,13 +116,15 @@ class BookController extends Controller
         return redirect()->route('home')->with('success', 'Livro atualizado com sucesso!');
     }
 
-    public function showBook($id){
+    public function showBook($id)
+    {
         $book = Auth::user()->books()->findOrFail($id);
 
         return view('books.show', ['book' => $book]);
     }
 
-    public function deletarLivro($id){
+    public function deletarLivro($id)
+    {
         $decrypted_id = Operations::decryptId($id);
 
         $book = Auth::user()->books()->findOrFail($decrypted_id);
@@ -123,7 +135,8 @@ class BookController extends Controller
         return redirect()->route('home');
     }
 
-    public function listDeletedBooks(){
+    public function listDeletedBooks()
+    {
         $listaExcluidos = Book::onlyTrashed()->get();
         return view('books.list_deleted', ['listaExcluidos' => $listaExcluidos]);
     }
@@ -131,7 +144,7 @@ class BookController extends Controller
     public function hardDeleteBook($id)
     {
         $bookId = Operations::decryptId($id);
-       $book = Book::withTrashed()->find($bookId);
+        $book = Book::withTrashed()->find($bookId);
         if (!$book) {
             return redirect()->route('home');
         }

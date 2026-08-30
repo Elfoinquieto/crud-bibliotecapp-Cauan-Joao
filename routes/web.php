@@ -13,7 +13,7 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/', [MainController::class, 'index'])->name('home');
+    Route::get('/', [BookController::class, 'index'])->name('home');
 
     Route::get('/autores', [AuthorController::class, 'listAuthors'])->name('listarAutores');
     Route::get('/autores/cadastrar', [AuthorController::class, 'formAuthor'])->name('cadastroAutor');
